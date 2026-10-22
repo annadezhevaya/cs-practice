@@ -9,7 +9,7 @@ def parse_record(line: str) -> dict:
         temp = float(temp)
     except ValueError:
         raise ValueError("Температура не число")
-    return {"city": city, "temp": temp, "date": date}
+    return {"city": city, "temperature": temp, "date": date}
 
 def read_valid(lines: list[str]) -> list[dict]:
     records = []
@@ -28,7 +28,7 @@ def average_by_city(records: list[dict]) -> dict:
     count = {}
     for rec in records:
         city = rec["city"]
-        total[city] = total.get(city, 0.0) + rec["temp"]
+        total[city] = total.get(city, 0.0) + rec["temperature"]
         count[city] = count.get(city, 0) + 1
     return {c: round(total[c]/count[c], 1) for c in total}
 
@@ -37,7 +37,7 @@ def warmest_city(records: list[dict]) -> str:
     count = {}
     for rec in records:
         city = rec["city"]
-        total[city] = total.get(city, 0.0) + rec["temp"]
+        total[city] = total.get(city, 0.0) + rec["temperature"]
         count[city] = count.get(city, 0) + 1
     averages = {c: total[c] / count[c] for c in total}
     return min(averages, key=lambda c: (-averages[c], c))
