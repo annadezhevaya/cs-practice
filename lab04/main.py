@@ -1,6 +1,6 @@
-import sys
+# import sys
 
-lines = sys.stdin.read().splitlines()
+# lines = sys.stdin.read().splitlines()
 # total = {}
 # count = {}
 # for line in lines:
@@ -14,4 +14,17 @@ lines = sys.stdin.read().splitlines()
 # print(len(lines))
 # print(0)
 # print(total[best] / count[best])
-print(lines)
+# print(lines)
+
+import sys
+
+from stats import average_by_city, read_valid, warmest_city
+
+lines = sys.stdin.read().splitlines()
+records = read_valid(lines)
+non_empty = [l for l in lines if l.strip()]
+
+print(len(records))
+print(len(non_empty) - len(records))
+best = warmest_city(records)
+print(f"{average_by_city(records)[best]:.1f}")
