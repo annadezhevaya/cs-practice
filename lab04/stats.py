@@ -6,7 +6,7 @@ def parse_record(line: str) -> dict:
     if not city or not date:
         raise ValueError("Пустой город или дата")
     try:
-        temp = float(temp)
+        temp = float(temp.replace(",", "."))
     except ValueError:
         raise ValueError("Температура не число")
     return {"city": city, "temperature": temp, "date": date}
